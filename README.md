@@ -1,102 +1,60 @@
-# Betterbugs Web SDK
+# BetterBugs Web SDK
 
-## 📘 Introduction
+**Simplify bug reporting within your web apps with the BetterBugs Web SDK.**
 
-The **Betterbugs Web SDK** provides seamless, user-friendly bug reporting capabilities for any web application. With features like session rewind, media capture, log tracking, and real-time hooks, it empowers teams to diagnose and resolve issues more effectively—streamlining development workflows and enhancing the end-user experience.
+The BetterBugs Web SDK allows you to include bug reporting capabilities in your application with minimal settings and effort.
 
----
-
-## 🚀 Key Features
-
-### ✅ Seamless Integration
-
-Integrate Betterbugs effortlessly into your web app with a simple initialization step.
+Now, you can enhance your apps with user-friendly and easy-to-implement issue reporting capabilities, such as media capturing, log tracking, getting the two-minute Rewind session video, and real-time hooks to help you and your team report, diagnose, and fix issues effectively.
 
 ---
 
-### ⚙️ Configurable Options
+## 🔍 Breaking it down
 
-Customize the SDK behavior with the following parameters:
-
-| Option                      | Type                                                               | Description                                                    |
-| --------------------------- | ------------------------------------------------------------------ | -------------------------------------------------------------- |
-| `apiKey`                    | `string`                                                           | Project-specific API key (**required**)                        |
-| `metaData`                  | `array<object>`                                                    | Custom metadata to attach to reports (e.g., `{ userId: 123 }`) |
-| `captureRewindOnScreenshot` | `boolean`                                                          | Attach last 2 minutes of session rewind to screenshots         |
-| `recordType`                | `"getUserMedia"` \| `"rrweb"`                                      | Choose between webcam recording or DOM session replay          |
-| `enableRewind`              | `boolean`                                                          | Enable capturing of session rewind                             |
-| `enableAnnotation`          | `boolean`                                                          | Enable annotation tools on screenshots and recordings          |
-| `showActionButton`          | `boolean`                                                          | Display or hide the floating action button                     |
-| `position`                  | `{ top?: string, left?: string, right?: string, bottom?: string }` | Controls the widget’s screen position                          |
-| `mode`                      | `"development"` \| `"production"`                                  | Set to development or production mode                          |
+Using the BetterBugs Web SDK, you can enhance your web apps with bug reporting features that allow you to capture useful data about the issues. Here’s more on it.
 
 ---
 
-### 🧠 Programmatic Methods
+## 🚀 Key Features of the SDK
 
-Control SDK behavior programmatically using these methods:
-
-| Method                | Description                     |
-| --------------------- | ------------------------------- |
-| `show()`              | Show the floating widget        |
-| `hide()`              | Hide the floating widget        |
-| `openWidget()`        | Open the bug report widget      |
-| `closeWidget()`       | Close the bug report widget     |
-| `updateMetadata()`    | Update attached metadata        |
-| `captureScreenshot()` | Trigger screenshot capture      |
-| `startRecording()`    | Start session recording         |
-| `stopRecording()`     | Stop the ongoing recording      |
-| `on()`                | Register an event listener      |
-| `off()`               | Unregister an event listener    |
-| `destroy()`           | Destroy the Betterbugs instance |
+- **Seamless integration** — Quick installation and easy to use with a few lines of code.
+- **Configurable params** — Tweak settings for the parameters, such as `metaData`, `recordType`, `enableAnnotation`, and many others.
+- **Use Methods** — Control the SDK with programmatic methods, such as `show()`, `hide()`, `startRecording()`, and many others.
+- **Event hooks** — For deeper integration, listen for specific lifecycle events with hooks, such as:
+  - after a screenshot is captured (`onScreenshot`)
+  - a bug is submitted (`onBugSubmit`)
+  - a recording starts (`onRecordingStop`)
+  - and many others.
+- **Session Rewind (coming soon)** – Automatically records the last 2 minutes of a session to capture all user interactions.
+- **Floating widget customization** – Control the widget’s look and placement.
 
 ---
 
-### 🔁 Event Hooks
+## 📦 Quick Installation
 
-Listen to lifecycle events for deeper integration:
+### NPM install
 
-| Event                | Trigger Description                        |
-| -------------------- | ------------------------------------------ |
-| `onScreenshot`       | Triggered after a screenshot is captured   |
-| `onRecordingStart`   | Triggered when recording starts            |
-| `onRecordingStop`    | Triggered when recording stops             |
-| `onBugSubmit`        | Triggered after a bug is submitted         |
-| `onMetaDataUpdate`   | Triggered when metadata is updated         |
-| `onPositionUpdate`   | Triggered when widget position changes     |
-| `onWidgetOpen`       | Triggered when the widget is opened        |
-| `onWidgetClose`      | Triggered when the widget is closed        |
-| `onShowActionButton` | Triggered when the action button is shown  |
-| `onHideActionButton` | Triggered when the action button is hidden |
-| `onSessionCreated`   | Triggered when a new session is created    |
+```bash
+npm install @betterbugs/web-sdk
+```
+
+### Yarn install
+
+```bash
+yarn add @betterbugs/web-sdk
+```
 
 ---
 
-### 🕓 Session Rewind _(coming soon)_
-
-Automatically capture the last **2 minutes** of user interaction, allowing developers to trace user actions leading up to a bug.
-
----
-
-### 🎨 Floating Widget Customization
-
-Customize the floating widget:
-
-- Position: `top`, `left`, `right`, `bottom`
-- UI customization (primary color, background, fonts, and button styles) — _coming soon_
-
----
-
-## 🧪 SDK Usage Example
+## 🧩 BetterBugs Web SDK Initialization: Usage Example
 
 ```ts
 import { Betterbugs } from '@betterbugs/web-sdk';
 
 const bb = new Betterbugs({
   apiKey: process.env.TEST_API_KEY || '',
-  metaData: { userID: '124' },
+  metaData: { userID: 124 },
   captureRewindOnScreenshot: true,
-  recordType: 'getUserMedia',
+  recordType: 'recordVideo',
   position: {
     top: '10px',
     left: '20px',
@@ -107,3 +65,82 @@ const bb = new Betterbugs({
   showActionButton: true,
 });
 ```
+
+---
+
+## ✅ Quick Overview of the Example Code
+
+1. **Imports the Betterbugs SDK** — Pulls in Betterbugs from the `@betterbugs/web-sdk` package.
+2. **Creates a new instance (`bb`)** — The configuration object sets options for:
+   - `apiKey`: Get value from environment variable.
+   - `metaData`: Custom user information (`userID: 124`).
+   - `captureRewindOnScreenshot`: Enables rewind session event capture on screenshot.
+   - `recordType`: Uses `recordVideo` for media recording.
+   - `position`: Positions the widget.
+   - `mode`: Development mode for debugging.
+   - `enableRewind`: Enables rewind session video.
+   - `enableAnnotation`: Enables annotations.
+   - `showActionButton`: Displays floating action button.
+
+---
+
+## ⚙️ Configurable Options
+
+| Option                    | Type                            | Description                                                                 |
+|---------------------------|----------------------------------|-----------------------------------------------------------------------------|
+| `apiKey`                  | `string`                        | Project-specific API* (required)                                            |
+| `metaData`                | `array<object>`                 | Custom metadata (e.g., `{ userId: 123 }`)                                   |
+| `captureRewindOnScreenshot` | `boolean`                    | Attach rewind session to screenshots                                        |
+| `recordType`              | `"recordVideo" \| "domRecord"`  | Recording type: media (`recordVideo`) or DOM (`domRecord`)                 |
+| `enableRewind`            | `boolean`                       | Enable rewind session capturing                                             |
+| `enableAnnotation`        | `boolean`                       | Enable annotation tools                                                     |
+| `showActionButton`        | `boolean`                       | Toggle visibility of floating action button                                 |
+| `position`                | `{ top?: string, left?: string, right?: string, bottom?: string }` | Widget position                        |
+| `mode`                    | `"development" \| "production"` | Mode of operation (debugging or live use)                                   |
+
+---
+
+## 🧪 Programmatic Methods
+
+| Method             | Description                                 |
+|--------------------|---------------------------------------------|
+| `show()`           | Show the floating widget                    |
+| `hide()`           | Hide the floating widget                    |
+| `openWidget()`     | Open the bug report widget                  |
+| `closeWidget()`    | Close the bug report widget                 |
+| `updateMetadata()` | Update the attached metadata                |
+| `captureScreenshot()` | Trigger screenshot capture             |
+| `startRecording()` | Start session recording                     |
+| `stopRecording()`  | Stop the ongoing recording                  |
+| `on()`             | Register an event listener                  |
+| `off()`            | Unregister an event listener                |
+| `destroy()`        | Destroy the BetterBugs instance             |
+
+---
+
+## 🔄 Lifecycle Event Hooks
+
+| Event                | Trigger Description                                |
+|----------------------|----------------------------------------------------|
+| `onScreenshot`       | Triggered after the screenshot is captured         |
+| `onRecordingStart`   | Triggered when the recording starts                |
+| `onRecordingStop`    | Triggered when the recording stops                 |
+| `onBugSubmit`        | Triggered after a bug is submitted                 |
+| `onMetaDataUpdate`   | Triggered when metadata is updated                 |
+| `onPositionUpdate`   | Triggered when widget position changes             |
+| `onWidgetOpen`       | Triggered when the widget is opened                |
+| `onWidgetClose`      | Triggered when the widget is closed                |
+| `onShowActionButton` | Triggered when the action button is shown          |
+| `onHideActionButton` | Triggered when the action button is hidden         |
+| `onSessionCreated`   | Triggered when a new session is created            |
+
+---
+
+## 🧱 Floating Widget Customization Options
+
+- **Positioning** — Define widget position using `{ top, left, right, bottom }`
+- **UI Customization** — Modify button styles, background, and primary colors (coming soon)
+
+---
+
+> **Note**: Session Rewind and additional UI customization features are coming soon.
