@@ -1,4 +1,4 @@
-declare module '@bb-test/web-sdk' {
+declare module '@betterbugs/web-sdk' {
   export interface BetterbugsOptions {
     apiKey: string;
     metaData?: Record<string | number, string | null>;
