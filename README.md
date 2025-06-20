@@ -1,146 +1,141 @@
 # BetterBugs Web SDK
 
-**Simplify bug reporting within your web apps with the BetterBugs Web SDK.**
+Simplify bug reporting within your web apps with the BetterBugs Web SDK.
 
 The BetterBugs Web SDK allows you to include bug reporting capabilities in your application with minimal settings and effort.
 
 Now, you can enhance your apps with user-friendly and easy-to-implement issue reporting capabilities, such as media capturing, log tracking, getting the two-minute Rewind session video, and real-time hooks to help you and your team report, diagnose, and fix issues effectively.
 
----
+## Breaking it down
 
-## 🔍 Breaking it down
+Using the BetterBugs Web SDK, you can enhance your web apps with bug reporting features that allow you to capture useful data about the issues. Here's more on it.
 
-Using the BetterBugs Web SDK, you can enhance your web apps with bug reporting features that allow you to capture useful data about the issues. Here’s more on it.
-
----
-
-## 🚀 Key Features of the SDK
+## Key features of the SDK
 
 - **Seamless integration** — Quick installation and easy to use with a few lines of code.
-- **Configurable params** — Tweak settings for the parameters, such as `metaData`, `recordType`, `enableAnnotation`, and many others.
-- **Use Methods** — Control the SDK with programmatic methods, such as `show()`, `hide()`, `startRecording()`, and many others.
-- **Event hooks** — For deeper integration, listen for specific lifecycle events with hooks, such as:
-  - after a screenshot is captured (`onScreenshot`)
-  - a bug is submitted (`onBugSubmit`)
-  - a recording starts (`onRecordingStop`)
-  - and many others.
-- **Session Rewind (coming soon)** – Automatically records the last 2 minutes of a session to capture all user interactions.
-- **Floating widget customization** – Control the widget’s look and placement.
+- **Configurable params** — Tweak settings for the parameters, such as metaData, recordType, enableAnnotation, and many others.
+- **Use Methods** — Control the SDK with programmatic methods, such as show(), hide(), startRecording(), and many others.
+- **Event hooks** — For deeper integration, listen for specific lifecycle events with hooks, such as after a screenshot is captured (screenshot), a bug is submitted (bugSubmit), or a recording starts (recordingStop), and many others.
+- **Session Rewind (coming soon)** – Automatically records the last 2 minutes of a session to capture all user interactions. It's perfect for auto-capturing issues that just happened and helps trace actions that lead to the bug.
+- **Floating widget customization** – Control the widget's look and placement.
 
----
+## Quick installation
 
-## 📦 Quick Installation
+To install the SDK, use the following command:
 
 ### NPM install
 
-```bash
+```shell
 npm install @betterbugs/web-sdk
 ```
 
 ### Yarn install
 
-```bash
+```shell
 yarn add @betterbugs/web-sdk
 ```
 
----
+## BetterBugs Web SDK initialization: Usage example
 
-## 🧩 BetterBugs Web SDK Initialization: Usage Example
+After installation, here's how to initialize the SDK instance in your web app:
 
-```ts
+### TypeScript
+
+```typescript
 import { Betterbugs } from '@betterbugs/web-sdk';
 
-const bb = new Betterbugs({
+new Betterbugs({
   apiKey: process.env.TEST_API_KEY || '',
-  metaData: { userID: 124 },
-  captureRewindOnScreenshot: true,
-  recordType: 'recordVideo',
-  position: {
-    top: '10px',
-    left: '20px',
-  },
-  mode: 'development',
-  enableRewind: true,
-  enableAnnotation: true,
-  showActionButton: true,
+  mode: 'production',
 });
 ```
 
----
+## Quick overview of the example code
 
-## ✅ Quick Overview of the Example Code
+Here's what it does:
 
-1. **Imports the Betterbugs SDK** — Pulls in Betterbugs from the `@betterbugs/web-sdk` package.
-2. **Creates a new instance (`bb`)** — The configuration object sets options for:
-   - `apiKey`: Get value from environment variable.
-   - `metaData`: Custom user information (`userID: 124`).
-   - `captureRewindOnScreenshot`: Enables rewind session event capture on screenshot.
-   - `recordType`: Uses `recordVideo` for media recording.
-   - `position`: Positions the widget.
-   - `mode`: Development mode for debugging.
-   - `enableRewind`: Enables rewind session video.
-   - `enableAnnotation`: Enables annotations.
-   - `showActionButton`: Displays floating action button.
+**1 - Imports the Betterbugs SDK** — Pulls in Betterbugs from the @betterbugs/web-sdk package.
 
----
+**2 - Creates a new instance (bb)** — The configuration object sets options for:
 
-## ⚙️ Configurable Options
+- **apiKey**: Get value from environment variable (process.env.PROJECT_API_KEY).
+- **metaData**: Custom user information (userID: 124) added to the object.
+- **captureRewindOnScreenshot**: Allows rewind session event capturing when a screenshot is taken.
+- **recordType**: Uses recordVideo type, for recording browser media.
+- **position**: Positions the floating widget (top: 10px, left: 20px).
+- **mode**: Running in development environment for additional debugging features.
+- **enableRewind**: Enable rewind session event capturing
+- **enableAnnotation**: Add annotations capability.
+- **showActionButton**: Displays an interactive button for user actions.
 
-| Option                      | Type                                                               | Description                                                |
-| --------------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------- |
-| `apiKey`                    | `string`                                                           | Project-specific API\* (required)                          |
-| `metaData`                  | `array<object>`                                                    | Custom metadata (e.g., `{ userId: 123 }`)                  |
-| `captureRewindOnScreenshot` | `boolean`                                                          | Attach rewind session to screenshots                       |
-| `recordType`                | `"recordVideo" \| "domRecord"`                                     | Recording type: media (`recordVideo`) or DOM (`domRecord`) |
-| `enableRewind`              | `boolean`                                                          | Enable rewind session capturing                            |
-| `enableAnnotation`          | `boolean`                                                          | Enable annotation tools                                    |
-| `showActionButton`          | `boolean`                                                          | Toggle visibility of floating action button                |
-| `position`                  | `{ top?: string, left?: string, right?: string, bottom?: string }` | Widget position                                            |
-| `mode`                      | `"development" \| "production"`                                    | Mode of operation (debugging or live use)                  |
+## Configurable Options: Customize SDK behavior
 
----
+You can customize the SDK behavior with the following parameters:
 
-## 🧪 Programmatic Methods
+| Option                    | Type                                                                 | Description                                                                                                                                                                                                                                           |
+| ------------------------- | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| apiKey                    | string                                                               | Project-specific API\* (required)                                                                                                                                                                                                                     |
+| metaData                  | array<object>                                                        | Custom metadata to attach to reports (e.g., { userId: 123 })                                                                                                                                                                                          |
+| captureRewindOnScreenshot | boolen                                                               | Attach the last two minutes of the Rewind session video to screenshots.                                                                                                                                                                               |
+| recordType                | "recordVideo" \| "domRecord"                                         | The "recordVideo" type (recommended for SPAs) is the traditional media recording method for video and audio. The "domRecord" type (recommended for Multi Page Apps) is the DOM recording method and may not be as accurate as the "recordVideo" type. |
+| disableScreenshot         | boolean                                                              | Disable screenshot capturing                                                                                                                                                                                                                          |
+| disableRecording          | boolean                                                              | Disable screen recording                                                                                                                                                                                                                              |
+| enableAnnotation          | boolean                                                              | Enable annotation tools for screenshots and video recordings.                                                                                                                                                                                         |
+| showActionButton          | boolean                                                              | Display/Hide the floating action button.                                                                                                                                                                                                              |
+| position                  | { top? : string, left? : string, right? : string, bottom? : string } | Control the widget's screen position.                                                                                                                                                                                                                 |
+| mode                      | "development" \| "production"                                        | Set development or production mode.<br><br>The "development" mode can be set when the app is under development, and the "production" mode is for end-users, meaning the app's customers can report a bug in the live environment.                     |
+| email                     | string                                                               | The user's email address who is reporting the bug. Works only in "production" mode.                                                                                                                                                                   |
+| theme                     | "dark" \| "light"                                                    | Set a dark or light theme                                                                                                                                                                                                                             |
+| primaryColor              | string                                                               | Set primary color (branding color)                                                                                                                                                                                                                    |
+| primaryTextColor          | string                                                               | Set the primary text color for the buttons.                                                                                                                                                                                                           |
+| actionButtonComponent     | React.ReactNode \| string                                            | Component for the action button (React component or HTML string accepted).                                                                                                                                                                            |
+| bugSuccessComponent       | React.ReactNode \| string                                            | Component visible when the bug is successfully created (React component or HTML string accepted).                                                                                                                                                     |
+| maxRecordingMinutes       | number                                                               | Set maximum recording length                                                                                                                                                                                                                          |
 
-| Method                | Description                     |
-| --------------------- | ------------------------------- |
-| `show()`              | Show the floating widget        |
-| `hide()`              | Hide the floating widget        |
-| `openWidget()`        | Open the bug report widget      |
-| `closeWidget()`       | Close the bug report widget     |
-| `updateMetadata()`    | Update the attached metadata    |
-| `captureScreenshot()` | Trigger screenshot capture      |
-| `startRecording()`    | Start session recording         |
-| `stopRecording()`     | Stop the ongoing recording      |
-| `on()`                | Register an event listener      |
-| `off()`               | Unregister an event listener    |
-| `destroy()`           | Destroy the BetterBugs instance |
+## Programmatic Methods: Control SDK behavior
 
----
+Available methods for controlling the BetterBugs SDK behavior;
 
-## 🔄 Lifecycle Event Hooks
+| Method                   | Description                           |
+| ------------------------ | ------------------------------------- |
+| setEmail()               | Update the email of the bug reporter. |
+| changeTheme()            | Update theme.                         |
+| changePrimaryColor()     | Update the primary color.             |
+| changePrimaryTextColor() | Update the primary text color.        |
+| show()                   | Show the floating widget              |
+| hide()                   | Hide the floating widget.             |
+| openWidget()             | Open the bug report widget.           |
+| closeWidget()            | Close the bug report widget.          |
+| updateMetadata()         | Update the attached metadata.         |
+| captureScreenshot()      | Trigger screenshot capture.           |
+| startRecording()         | Start session recording.              |
+| stopRecording()          | Stop the ongoing recording.           |
+| on()                     | Register an event listener.           |
+| off()                    | Unregister an event listener.         |
+| destroy()                | Destroy the BetterBugs instance.      |
 
-| Event                | Trigger Description                        |
-| -------------------- | ------------------------------------------ |
-| `onScreenshot`       | Triggered after the screenshot is captured |
-| `onRecordingStart`   | Triggered when the recording starts        |
-| `onRecordingStop`    | Triggered when the recording stops         |
-| `onBugSubmit`        | Triggered after a bug is submitted         |
-| `onMetaDataUpdate`   | Triggered when metadata is updated         |
-| `onPositionUpdate`   | Triggered when widget position changes     |
-| `onWidgetOpen`       | Triggered when the widget is opened        |
-| `onWidgetClose`      | Triggered when the widget is closed        |
-| `onShowActionButton` | Triggered when the action button is shown  |
-| `onHideActionButton` | Triggered when the action button is hidden |
-| `onSessionCreated`   | Triggered when a new session is created    |
+## Lifecycle Event Hooks: For deeper integrations
 
----
+Available hooks to listen to the lifecycle events:
 
-## 🧱 Floating Widget Customization Options
+| Event            | Trigger description                         |
+| ---------------- | ------------------------------------------- |
+| emailUpdate      | Triggered when the email is updated.        |
+| screenshot       | Triggered after the screenshot is captured. |
+| recordingStart   | Triggered when the recording starts.        |
+| recordingStop    | Triggered when the recording stops.         |
+| bugSubmit        | Triggered after the bug is submitted        |
+| metaDataUpdate   | Triggered when the metadata is updated      |
+| positionUpdate   | Triggered when the widget position changes. |
+| widgetOpen       | Triggered when the widget is opened.        |
+| widgetClose      | Triggered when the widget is closed.        |
+| showActionButton | Triggered when the action button is shown.  |
+| hideActionButton | Triggered when the action button is hidden. |
+| sessionCreated   | Triggered when a new session is created.    |
 
-- **Positioning** — Define widget position using `{ top, left, right, bottom }`
-- **UI Customization** — Modify button styles, background, and primary colors (coming soon)
+## Floating widget customization options
 
----
+The floating widget can be customized in various ways:
 
-> **Note**: Session Rewind and additional UI customization features are coming soon.
+- **Positioning** — Define widget position using { top, left, right, bottom }.
+- **UI Customization** — Modify button styles, background, and primary colors.

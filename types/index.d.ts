@@ -1,9 +1,13 @@
 declare module '@betterbugs/web-sdk' {
   export interface BetterbugsOptions {
+    email?: string;
     apiKey: string;
-    metaData?: Record<string | number, string | null>;
-    captureRewindOnScreenshot?: boolean;
-    recordType?: 'getDisplayMedia' | 'rrweb';
+    metaData?: Record<string | number, string | number | null>;
+    // captureRewindOnScreenshot?: boolean;
+    recordType?: 'recordVideo' | 'domRecord';
+    primaryColor?: string;
+    primaryTextColor?: string;
+    bugSuccessComponent?: React.ReactNode | string;
     position?: {
       top?: string;
       left?: string;
@@ -11,13 +15,16 @@ declare module '@betterbugs/web-sdk' {
       right?: string;
     };
     mode?: 'development' | 'production';
-    enableRewind?: boolean;
+    theme?: 'light' | 'dark';
+    // enableRewind?: boolean;
     enableAnnotation?: boolean;
     widgetOpen?: boolean;
     showActionButton?: boolean;
-    accessToken?: string;
     maxRecordingMinutes?: number;
     triggerEvent?: (event: string, data?: unknown) => void;
+    actionButtonComponent?: React.ReactNode | string;
+    disableScreenshot?: boolean;
+    disableRecording?: boolean;
   }
 
   export interface BugReportData {
@@ -27,7 +34,7 @@ declare module '@betterbugs/web-sdk' {
     recording?: string;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     logs?: any[];
-    metaData?: Record<string | number, string | null>;
+    metaData?: Record<string | number, string | number | null>;
   }
 
   export type EventCallback = (data: unknown) => void;
@@ -59,11 +66,11 @@ declare module '@betterbugs/web-sdk' {
 
     // Getters
     // getAPIKey(): string;
-    // getEmail(): string;
-    getMetadata(): Record<string | number, string | null>;
+    getEmail(): string;
+    getPrimaryColor(): string;
+    getPrimaryTextColor(): string;
+    getMetadata(): Record<string | number, string | number | null>;
     getWidgetOpen(): boolean;
-    getCaptureRewindOnScreenshot(): boolean;
-    getRecordType(): 'getDisplayMedia' | 'rrweb';
     getPosition(): {
       top?: string;
       left?: string;
@@ -72,27 +79,24 @@ declare module '@betterbugs/web-sdk' {
     };
     destroy(): void;
     getMode(): 'development' | 'production';
-    getEnableRewind(): boolean;
-    getEnableAnnotation(): boolean;
     getShowActionButton(): boolean;
 
     // Setters
     setAPIKey(apiKey: string): void;
-    // setEmail(email: string): void;
+    setEmail(email: string): void;
     setMetadata(
       metaData: Array<{ title: string | null; value: string | null }>,
     ): void;
-    setCaptureRewindOnScreenshot(captureRewindOnScreenshot: boolean): void;
-    setRecordType(recordType: 'getDisplayMedia' | 'rrweb'): void;
     setPosition(position: {
       top?: string;
       left?: string;
       bottom?: string;
       right?: string;
     }): void;
-    setMode(mode: 'development' | 'production'): void;
-    setEnableRewind(enableRewind: boolean): void;
-    setEnableAnnotation(enableAnnotation: boolean): void;
+
+    changeTheme(theme: 'light' | 'dark'): void;
+    changePrimaryColor(primaryColor: string): void;
+    changePrimaryTextColor(primaryTextColor: string): void;
 
     // Widget controls
     openWidget(): void;

@@ -7,6 +7,7 @@ export interface LogData {
   tabId?: string;
   timestamp: number;
   type: 'console' | 'network' | 'step' | 'application' | 'rewind';
+  recordingIds?: string[];
   data:
     | ConsoleLogsObject
     | NetworkLogsObject

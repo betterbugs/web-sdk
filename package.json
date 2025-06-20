@@ -1,11 +1,23 @@
 {
   "name": "@betterbugs/web-sdk",
-  "version": "0.0.1",
+  "version": "0.0.9",
   "main": "index.js",
   "module": "index.js",
   "types": "types/index.d.ts",
-  "files": ["index.js", "types"],
+  "files": ["index.js", "recorder.js", "logsCapturer.js", "types"],
   "sideEffects": false,
+  "keywords": [
+    "betterbugs",
+    "web-sdk",
+    "bug-reporting",
+    "bug-tracking",
+    "bug-reporting-tool",
+    "bug-tracking-tool",
+    "bug-reporting-sdk",
+    "bug-tracking-sdk",
+    "betterbugs-sdk",
+    "betterbugs-web-sdk"
+  ],
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
