@@ -70,6 +70,8 @@ declare module '@betterbugs/web-sdk' {
     getPrimaryColor(): string;
     getPrimaryTextColor(): string;
     getMetadata(): Record<string | number, string | number | null>;
+    getRecordType(): 'recordVideo' | 'domRecord';
+    setRecordType(recordType: 'recordVideo' | 'domRecord'): void;
     getWidgetOpen(): boolean;
     getPosition(): {
       top?: string;
@@ -85,7 +87,7 @@ declare module '@betterbugs/web-sdk' {
     setAPIKey(apiKey: string): void;
     setEmail(email: string): void;
     setMetadata(
-      metaData: Array<{ title: string | null; value: string | null }>,
+      metaData: Record<string | number, string | number | null>,
     ): void;
     setPosition(position: {
       top?: string;
