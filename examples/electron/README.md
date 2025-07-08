@@ -1,6 +1,6 @@
 # Betterbugs Web-SDK Electron Integration Example
 
-This example demonstrates how to integrate the [Betterbugs Web-SDK](https://github.com/betterbugs/web-sdk) into an Electron application for comprehensive bug reporting and screen recording capabilities.
+This example demonstrates how to integrate the [Betterbugs Web-SDK](https://github.com/BetterBugs-Team/web-sdk) into an Electron application for comprehensive bug reporting and screen recording capabilities.
 
 ## What This Example Shows
 
@@ -25,13 +25,7 @@ This example demonstrates how to integrate the [Betterbugs Web-SDK](https://gith
 
 ## Integration Steps
 
-### 1. Install Betterbugs Web-SDK
-
-```bash
-yarn add @betterbugs/web-sdk
-```
-
-### 2. Initialize SDK in your HTML
+### 1. Initialize SDK in your HTML
 
 Add the Betterbugs SDK to your main HTML file:
 
@@ -54,7 +48,7 @@ Add the Betterbugs SDK to your main HTML file:
 </script>
 ```
 
-### 3. Configure Display Media Handler (Required for Screen Recording)
+### 2. Configure Display Media Handler (Required)
 
 **Important**: Add this configuration to your Electron main process (`main.ts`) to enable screen recording functionality:
 
