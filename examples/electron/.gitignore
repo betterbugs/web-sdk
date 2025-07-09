@@ -3,6 +3,7 @@ node_modules/
 
 # TypeScript build folder
 dist/
+release/
 
 # Log files
 npm-debug.log*

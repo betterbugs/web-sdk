@@ -20,5 +20,4 @@ function createWindow() {
   // Load the index.html file
   mainWindow.loadFile('index.html');
   mainWindow.setFullScreen(true);
-  mainWindow.webContents.openDevTools();
 }
