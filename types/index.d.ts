@@ -2,6 +2,13 @@ declare module '@betterbugs/web-sdk' {
   export interface BetterbugsOptions {
     email?: string;
     apiKey: string;
+    mainHeading?: string;
+    emailFieldLabel?: string;
+    emailFieldPlaceholder?: string;
+    titleFieldLabel?: string;
+    titleFieldPlaceholder?: string;
+    descriptionFieldLabel?: string;
+    descriptionFieldPlaceholder?: string;
     metaData?: Record<string | number, string | number | null>;
     // captureRewindOnScreenshot?: boolean;
     recordType?: 'recordVideo' | 'domRecord';
