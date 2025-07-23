@@ -72,46 +72,44 @@ Here's what it does:
 
 You can customize the SDK behavior with the following parameters:
 
-| Option                | Type                                                                 | Description                                                                                                                                                                                                                                           |
-| --------------------- | -------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| apiKey                | string                                                               | Project-specific API\* (required)                                                                                                                                                                                                                     |
-| metaData              | array<object>                                                        | Custom metadata to attach to reports (e.g., { userId: 123 })                                                                                                                                                                                          |
-| recordType            | "recordVideo" \| "domRecord"                                         | The "recordVideo" type (recommended for SPAs) is the traditional media recording method for video and audio. The "domRecord" type (recommended for Multi Page Apps) is the DOM recording method and may not be as accurate as the "recordVideo" type. |
-| disableScreenshot     | boolean                                                              | Disable screenshot capturing                                                                                                                                                                                                                          |
-| disableRecording      | boolean                                                              | Disable screen recording                                                                                                                                                                                                                              |
-| enableAnnotation      | boolean                                                              | Enable annotation tools for screenshots.                                                                                                                                                                                                              |
-| showActionButton      | boolean                                                              | Display/Hide the floating action button.                                                                                                                                                                                                              |
-| position              | { top? : string, left? : string, right? : string, bottom? : string } | Control the widget's screen position.                                                                                                                                                                                                                 |
-| mode                  | "development" \| "production"                                        | Set development or production mode.<br><br>The "development" mode can be set when the app is under development, and the "production" mode is for end-users, meaning the app's customers can report a bug in the live environment.                     |
-| email                 | string                                                               | The user's email address who is reporting the bug. Works only in "production" mode.                                                                                                                                                                   |
-| theme                 | "dark" \| "light"                                                    | Set a dark or light theme                                                                                                                                                                                                                             |
-| primaryColor          | string                                                               | Set primary color (branding color)                                                                                                                                                                                                                    |
-| primaryTextColor      | string                                                               | Set the primary text color for the buttons.                                                                                                                                                                                                           |
-| actionButtonComponent | React.ReactNode \| string                                            | Component for the action button (React component or HTML string accepted).                                                                                                                                                                            |
-| bugSuccessComponent   | React.ReactNode \| string                                            | Component visible when the bug is successfully created (React component or HTML string accepted).                                                                                                                                                     |
-| maxRecordingMinutes   | number                                                               | Set maximum recording length                                                                                                                                                                                                                          |
+| Option                      | Type                                                                             | Description                                                                                                                                                                                                                                           |
+| --------------------------- | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| apiKey                      | string                                                                           | Project-specific API\* (required)                                                                                                                                                                                                                     |
+| metaData                    | array<object>                                                                    | Custom metadata to attach to reports (e.g., { userId: 123 })                                                                                                                                                                                          |
+| recordType                  | "recordVideo" \| "domRecord"                                                     | The "recordVideo" type (recommended for SPAs) is the traditional media recording method for video and audio. The "domRecord" type (recommended for Multi Page Apps) is the DOM recording method and may not be as accurate as the "recordVideo" type. |
+| disableScreenshot           | boolean                                                                          | Disable screenshot capturing                                                                                                                                                                                                                          |
+| disableRecording            | boolean                                                                          | Disable screen recording                                                                                                                                                                                                                              |
+| enableAnnotation            | boolean                                                                          | Enable annotation tools for screenshots.                                                                                                                                                                                                              |
+| showActionButton            | boolean                                                                          | Display/Hide the floating action button.                                                                                                                                                                                                              |
+| position                    | { top? : string, left? : string, right? : string, bottom? : string }             | Control the widget's screen position.                                                                                                                                                                                                                 |
+| mode                        | "development" \| "production"                                                    | Set development or production mode.<br><br>The "development" mode can be set when the app is under development, and the "production" mode is for end-users, meaning the app's customers can report a bug in the live environment.                     |
+| email                       | string                                                                           | The user's email address who is reporting the bug. Works only in "production" mode.                                                                                                                                                                   |
+| styles                      | { theme?: 'light' \| 'dark'; primaryColor?: string; primaryTextColor?: string; } | Set the styles of the widget                                                                                                                                                                                                                          |
+| actionButtonComponent       | React.ReactNode \| string                                                        | Component for the action button (React component or HTML string accepted).                                                                                                                                                                            |
+| successMessageHeaderText    | string                                                                           | Main heading text of the success message.                                                                                                                                                                                                             |
+| successMessageSubHeaderText | string                                                                           | Sub heading text of the success message.                                                                                                                                                                                                              |
+| maxRecordingMinutes         | number                                                                           | Set maximum recording length                                                                                                                                                                                                                          |
 
 ## Programmatic Methods: Control SDK behavior
 
 Available methods for controlling the BetterBugs SDK behavior;
 
-| Method                   | Description                           |
-| ------------------------ | ------------------------------------- |
-| setEmail()               | Update the email of the bug reporter. |
-| changeTheme()            | Update theme.                         |
-| changePrimaryColor()     | Update the primary color.             |
-| changePrimaryTextColor() | Update the primary text color.        |
-| show()                   | Show the floating widget              |
-| hide()                   | Hide the floating widget.             |
-| openWidget()             | Open the bug report widget.           |
-| closeWidget()            | Close the bug report widget.          |
-| setMetadata()            | Update the attached metadata.         |
-| captureScreenshot()      | Trigger screenshot capture.           |
-| startRecording()         | Start session recording.              |
-| stopRecording()          | Stop the ongoing recording.           |
-| on()                     | Register an event listener.           |
-| off()                    | Unregister an event listener.         |
-| destroy()                | Destroy the BetterBugs instance.      |
+| Method              | Description                           |
+| ------------------- | ------------------------------------- |
+| setEmail()          | Update the email of the bug reporter. |
+| setStyles()         | Update the styles of the widget.      |
+| getStyles()         | Get the styles of the widget.         |
+| show()              | Show the floating widget              |
+| hide()              | Hide the floating widget.             |
+| openWidget()        | Open the bug report widget.           |
+| closeWidget()       | Close the bug report widget.          |
+| setMetadata()       | Update the attached metadata.         |
+| captureScreenshot() | Trigger screenshot capture.           |
+| startRecording()    | Start session recording.              |
+| stopRecording()     | Stop the ongoing recording.           |
+| on()                | Register an event listener.           |
+| off()               | Unregister an event listener.         |
+| destroy()           | Destroy the BetterBugs instance.      |
 
 ## Lifecycle Event Hooks: For deeper integrations
 

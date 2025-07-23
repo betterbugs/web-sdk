@@ -1,5 +1,12 @@
 declare module '@betterbugs/web-sdk' {
+  export interface BetterBugsStylesConfig {
+    theme?: 'light' | 'dark';
+    primaryColor?: string;
+    primaryTextColor?: string;
+  }
+
   export interface BetterbugsOptions {
+    styles?: BetterBugsStylesConfig;
     email?: string;
     apiKey: string;
     mainHeading?: string;
@@ -12,9 +19,9 @@ declare module '@betterbugs/web-sdk' {
     metaData?: Record<string | number, string | number | null>;
     // captureRewindOnScreenshot?: boolean;
     recordType?: 'recordVideo' | 'domRecord';
-    primaryColor?: string;
-    primaryTextColor?: string;
-    bugSuccessComponent?: React.ReactNode | string;
+    // bugSuccessComponent?: React.ReactNode | string;
+    successMessageHeaderText?: string;
+    successMessageSubHeaderText?: string;
     position?: {
       top?: string;
       left?: string;
@@ -22,7 +29,6 @@ declare module '@betterbugs/web-sdk' {
       right?: string;
     };
     mode?: 'development' | 'production';
-    theme?: 'light' | 'dark';
     // enableRewind?: boolean;
     enableAnnotation?: boolean;
     widgetOpen?: boolean;
@@ -74,8 +80,6 @@ declare module '@betterbugs/web-sdk' {
     // Getters
     // getAPIKey(): string;
     getEmail(): string;
-    getPrimaryColor(): string;
-    getPrimaryTextColor(): string;
     getMetadata(): Record<string | number, string | number | null>;
     getRecordType(): 'recordVideo' | 'domRecord';
     setRecordType(recordType: 'recordVideo' | 'domRecord'): void;
@@ -103,9 +107,8 @@ declare module '@betterbugs/web-sdk' {
       right?: string;
     }): void;
 
-    changeTheme(theme: 'light' | 'dark'): void;
-    changePrimaryColor(primaryColor: string): void;
-    changePrimaryTextColor(primaryTextColor: string): void;
+    setStyles(styles: BetterBugsStylesConfig): void;
+    getStyles(): BetterBugsStylesConfig;
 
     // Widget controls
     openWidget(): void;

@@ -1,7 +1,12 @@
-export interface BetterBugsConfiguration {
+export interface BetterBugsStylesConfig {
   theme?: 'light' | 'dark';
-  primaryActionBg?: string;
+  primaryColor?: string;
   primaryTextColor?: string;
+}
+
+export interface BetterBugsConfiguration {
+  styles?: BetterBugsStylesConfig;
+
   mainHeaderText?: string;
   subHeaderText?: string;
   startRecordingBtnText?: string;
@@ -11,6 +16,9 @@ export interface BetterBugsConfiguration {
   titleFieldPlaceholder?: string;
   descriptionFieldLabel?: string;
   descriptionFieldPlaceholder?: string;
+  successMessageHeaderText?: string;
+  successMessageSubHeaderText?: string;
+  metaData?: Record<string | number, string | number | null>;
 }
 
 declare global {
