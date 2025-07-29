@@ -60,11 +60,9 @@ Here's what it does:
 
 - **apiKey**: Get value from environment variable (process.env.PROJECT_API_KEY).
 - **metaData**: Custom user information (userID: 124) added to the object.
-- **captureRewindOnScreenshot**: Allows rewind session event capturing when a screenshot is taken.
 - **recordType**: Uses recordVideo type, for recording browser media.
 - **position**: Positions the floating widget (top: 10px, left: 20px).
 - **mode**: Running in development environment for additional debugging features.
-- **enableRewind**: Enable rewind session event capturing
 - **enableAnnotation**: Add annotations capability.
 - **showActionButton**: Displays an interactive button for user actions.
 
