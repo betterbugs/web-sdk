@@ -32,6 +32,9 @@
   },
   "author": "Betterbugs Dev",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "A web sdk package for Betterbugs",
   "repository": {
     "type": "git",
