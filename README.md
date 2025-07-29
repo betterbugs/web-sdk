@@ -59,12 +59,7 @@ Here's what it does:
 **2 - Creates a new instance (bb)** — The configuration object sets options for:
 
 - **apiKey**: Get value from environment variable (process.env.PROJECT_API_KEY).
-- **metaData**: Custom user information (userID: 124) added to the object.
-- **recordType**: Uses recordVideo type, for recording browser media.
-- **position**: Positions the floating widget (top: 10px, left: 20px).
-- **mode**: Running in development environment for additional debugging features.
-- **enableAnnotation**: Add annotations capability.
-- **showActionButton**: Displays an interactive button for user actions.
+- **mode**: Running in production environment for additional debugging features.
 
 ## Configurable Options: Customize SDK behavior
 
