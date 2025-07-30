@@ -50,7 +50,7 @@ new Betterbugs({
 });
 ```
 
-## Quick overview of the example code
+## Overview of the example code
 
 Here's what it does:
 
