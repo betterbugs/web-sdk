@@ -56,7 +56,7 @@ Here's what it does:
 
 **1 - Imports the Betterbugs SDK** — Pulls in Betterbugs from the @betterbugs/web-sdk package.
 
-**2 - Creates a new instance (bb)** — The configuration object sets options for:
+**2 - Creates a new instance** — The configuration object sets options for:
 
 - **apiKey**: Get value from environment variable (process.env.PROJECT_API_KEY).
 - **mode**: Running in production environment for additional debugging features.
