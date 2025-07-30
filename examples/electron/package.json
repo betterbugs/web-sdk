@@ -1,0 +1,50 @@
+{
+  "name": "electron-typescript",
+  "version": "1.0.0",
+  "description": "A modern Electron application with TypeScript and BetterBugs integration",
+  "author": "Your Name <your.email@example.com>",
+  "main": "dist/main.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/electron": "^1.6.12",
+    "@types/node": "^22.9.0",
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8",
+    "typescript": "^5.6.3"
+  },
+  "build": {
+    "appId": "com.example.myapp",
+    "productName": "MyElectronApp",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "index.html",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg",
+      "identity": null
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  },
+  "dependencies": {
+    "@betterbugs/web-sdk": "^0.0.12"
+  },
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc",
+    "start": "npm run build && electron .",
+    "dev": "npm run build && NODE_ENV=development electron .",
+    "prod": "npm run build && NODE_ENV=production electron .",
+    "pack": "npm run build && electron-builder --dir",
+    "dist": "npm run build && electron-builder",
+    "postinstall": "electron-builder install-app-deps"
+  }
+}
