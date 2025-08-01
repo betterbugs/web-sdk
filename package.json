@@ -1,6 +1,6 @@
 {
   "name": "@betterbugs/web-sdk",
-  "version": "0.0.32",
+  "version": "0.0.33",
   "main": "index.js",
   "module": "index.js",
   "types": "types/index.d.ts",
@@ -38,6 +38,6 @@
   "description": "A web sdk package for Betterbugs",
   "repository": {
     "type": "git",
-    "url": "https://github.com/BetterBugs-Team/web-sdk"
+    "url": "https://github.com/betterbugs/web-sdk"
   }
 }
