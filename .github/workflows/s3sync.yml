@@ -41,7 +41,7 @@ jobs:
             --exclude ".nojekyll" \
             --exclude ".gitignore" \
             --exclude "examples/*" \
-            --exclude ".github/workflows/*"
+            --exclude ".github/workflows/*" \
             --exclude ".git/*"
 
       # Sync all files (except excluded) to latest folder
