@@ -42,6 +42,7 @@ jobs:
             --exclude ".gitignore" \
             --exclude "examples/*" \
             --exclude ".github/workflows/*"
+            --exclude ".git/*"
 
       # Sync all files (except excluded) to latest folder
       - name: Sync to S3 latest folder
@@ -51,5 +52,6 @@ jobs:
             --exclude ".nojekyll" \
             --exclude ".gitignore" \
             --exclude "examples/*" \
+            --exclude ".git/*" \
             --exclude ".github/workflows/*" \
             --delete
