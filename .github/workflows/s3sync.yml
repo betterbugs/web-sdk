@@ -1,0 +1,55 @@
+name: Sync to S3
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync-to-s3:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Set up Node.js to read package.json
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Extract version from package.json
+      - name: Get package version
+        id: package-version
+        run: echo "PACKAGE_VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
+
+      # Configure AWS credentials
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      # Sync all files (except excluded) to versioned folder
+      - name: Sync to S3 versioned folder
+        run: |
+          aws s3 sync . s3://${{ secrets.AWS_S3_BUCKET }}/${{ secrets.S3_PATH_PREFIX }}/v${{ env.PACKAGE_VERSION }}/ \
+            --exclude "README.md" \
+            --exclude ".nojekyll" \
+            --exclude ".gitignore" \
+            --exclude "examples/*" \
+            --exclude ".github/workflows/*"
+
+      # Sync all files (except excluded) to latest folder
+      - name: Sync to S3 latest folder
+        run: |
+          aws s3 sync . s3://${{ secrets.AWS_S3_BUCKET }}/${{ secrets.S3_PATH_PREFIX }}/latest/ \
+            --exclude "README.md" \
+            --exclude ".nojekyll" \
+            --exclude ".gitignore" \
+            --exclude "examples/*" \
+            --exclude ".github/workflows/*" \
+            --delete
