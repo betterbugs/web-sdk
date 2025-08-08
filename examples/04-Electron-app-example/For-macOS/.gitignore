@@ -1,0 +1,34 @@
+# Node modules
+node_modules/
+
+# TypeScript build folder
+dist/
+release/
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Environment variable files
+.env
+
+# Compiled code and cache
+*.tsbuildinfo
+
+# Editor directories and files
+.vscode/
+.idea/
+.sublime-workspace
+.sublime-project
+
+# Electron-related cache
+.electron/
+
+# Temporary files
+tmp/
+temp/

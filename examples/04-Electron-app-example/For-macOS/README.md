@@ -1,6 +1,6 @@
-# Betterbugs Web-SDK Electron Integration Example
+# BetterBugs Web SDK | Electron Integration Example (for macOS)
 
-This example demonstrates how to integrate the [Betterbugs Web-SDK](https://github.com/BetterBugs-Team/web-sdk) into an Electron application for comprehensive bug reporting and screen recording capabilities.
+This example demonstrates how to integrate the [Betterbugs Web SDK](https://github.com/BetterBugs-Team/web-sdk) into an Electron application for comprehensive bug reporting and screen recording capabilities.
 
 ## What This Example Shows
 
@@ -18,7 +18,7 @@ This example demonstrates how to integrate the [Betterbugs Web-SDK](https://gith
 ## Installation & Running
 
 1. Clone this repository
-2. Navigate to the electron example directory: `cd examples/electron`
+2. Open the `04-Electron-app-example\For-macOS` folder in your text editor
 3. Run `yarn install` to install dependencies
 4. Run `yarn build` to build the application
 5. Run `yarn start` to start the application
@@ -35,14 +35,17 @@ Add the Betterbugs SDK to your main HTML file:
 
 <!-- Initialize the SDK -->
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     window.bb = new Betterbugs({
-      apiKey: 'your-api-key-here',
-      mode: 'development', // or 'production'
+      apiKey: "your-api-key-here",
+      mode: "development", // or 'production'
       showActionButton: true,
-      position: { bottom: '20px', right: '20px' },
-      primaryColor: '#159957',
-      theme: 'light',
+      position: { top: "20px", right: "20px" },
+      styles: {
+        primaryColor: "#e41c38",
+        primaryTextColor: "#fff",
+        theme: "light",
+      },
     });
   });
 </script>
@@ -53,14 +56,14 @@ Add the Betterbugs SDK to your main HTML file:
 **Important**: Add this configuration to your Electron main process (`main.ts`) to enable screen recording functionality:
 
 ```typescript
-import { app, BrowserWindow, session, desktopCapturer } from 'electron';
+import { app, BrowserWindow, session, desktopCapturer } from "electron";
 
 app.whenReady().then(() => {
   // Configure session before creating window
   session.defaultSession.setDisplayMediaRequestHandler(
     (request, callback) => {
-      desktopCapturer.getSources({ types: ['screen'] }).then(sources => {
-        callback({ video: sources[0], audio: 'loopback' });
+      desktopCapturer.getSources({ types: ["screen"] }).then((sources) => {
+        callback({ video: sources[0], audio: "loopback" });
       });
     },
     { useSystemPicker: false }
