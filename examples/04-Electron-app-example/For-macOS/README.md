@@ -31,20 +31,20 @@ Add the Betterbugs SDK to your main HTML file:
 
 ```html
 <!-- Load via CDN -->
-<script src="https://cdn.jsdelivr.net/npm/@betterbugs/web-sdk@latest/index.js"></script>
+<script src="https://cdn.betterbugs.io/scripts/latest/index.js"></script>
 
 <!-- Initialize the SDK -->
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener('DOMContentLoaded', () => {
     window.bb = new Betterbugs({
-      apiKey: "your-api-key-here",
-      mode: "development", // or 'production'
+      apiKey: 'your-api-key-here',
+      mode: 'development', // or 'production'
       showActionButton: true,
-      position: { top: "20px", right: "20px" },
+      position: { top: '20px', right: '20px' },
       styles: {
-        primaryColor: "#e41c38",
-        primaryTextColor: "#fff",
-        theme: "light",
+        primaryColor: '#e41c38',
+        primaryTextColor: '#fff',
+        theme: 'light',
       },
     });
   });
@@ -56,14 +56,14 @@ Add the Betterbugs SDK to your main HTML file:
 **Important**: Add this configuration to your Electron main process (`main.ts`) to enable screen recording functionality:
 
 ```typescript
-import { app, BrowserWindow, session, desktopCapturer } from "electron";
+import { app, BrowserWindow, session, desktopCapturer } from 'electron';
 
 app.whenReady().then(() => {
   // Configure session before creating window
   session.defaultSession.setDisplayMediaRequestHandler(
     (request, callback) => {
-      desktopCapturer.getSources({ types: ["screen"] }).then((sources) => {
-        callback({ video: sources[0], audio: "loopback" });
+      desktopCapturer.getSources({ types: ['screen'] }).then(sources => {
+        callback({ video: sources[0], audio: 'loopback' });
       });
     },
     { useSystemPicker: false }
