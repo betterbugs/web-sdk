@@ -1,10 +1,10 @@
 {
   "name": "@betterbugs/web-sdk",
-  "version": "0.0.35",
+  "version": "0.0.36",
   "main": "index.js",
   "module": "index.js",
   "types": "types/index.d.ts",
-  "files": ["index.js", "recorder.js", "logs-capture.js", "types"],
+  "files": ["index.js", "recorder.js", "logs-capture.js", "types", "chunks"],
   "sideEffects": false,
   "keywords": [
     "betterbugs",
