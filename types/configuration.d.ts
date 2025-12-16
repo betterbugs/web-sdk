@@ -6,7 +6,8 @@ export interface BetterBugsStylesConfig {
 
 export interface BetterBugsConfiguration {
   styles?: BetterBugsStylesConfig;
-
+  brandLogoUrl?: string;
+  brandUrl?: string;
   mainHeaderText?: string;
   subHeaderText?: string;
   startRecordingBtnText?: string;
