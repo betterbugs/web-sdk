@@ -3,6 +3,13 @@ declare module '@betterbugs/web-sdk' {
     theme?: 'light' | 'dark';
     primaryColor?: string;
     primaryTextColor?: string;
+    fontFamily?: string;
+    fontFamilyUrl?: string;
+    secondaryColor?: string;
+    secondaryTextColor?: string;
+    textColor?: string;
+    mutedTextColor?: string;
+    inputBgColor?: string;
   }
 
   export interface BetterbugsOptions {
@@ -58,6 +65,7 @@ declare module '@betterbugs/web-sdk' {
     | 'recordingStop'
     | 'bugSubmit'
     | 'apiKeyUpdate'
+    | 'stylesUpdate'
     | 'emailUpdate'
     | 'metaDataUpdate'
     | 'captureRewindOnScreenshotUpdate'

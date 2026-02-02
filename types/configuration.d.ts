@@ -2,6 +2,12 @@ export interface BetterBugsStylesConfig {
   theme?: 'light' | 'dark';
   primaryColor?: string;
   primaryTextColor?: string;
+  fontFamily?: string;
+  secondaryColor?: string;
+  secondaryTextColor?: string;
+  textColor?: string;
+  mutedTextColor?: string;
+  inputBgColor?: string;
 }
 
 export interface BetterBugsConfiguration {
