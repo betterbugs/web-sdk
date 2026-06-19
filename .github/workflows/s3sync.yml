@@ -1,11 +1,11 @@
-name: Sync to S3
+name: Sync to R2
 
 on:
   release:
     types: [published]
 
 jobs:
-  sync-to-s3:
+  sync-to-r2:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,12 +30,13 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: auto
 
       # Sync all files (except excluded) to versioned folder
-      - name: Sync to S3 versioned folder
+      - name: Sync to R2 versioned folder
         run: |
           aws s3 sync . s3://${{ secrets.AWS_S3_BUCKET }}/${{ secrets.S3_PATH_PREFIX }}/v${{ env.PACKAGE_VERSION }}/ \
+            --endpoint-url ${{ secrets.R2_ENDPOINT_URL }} \
             --exclude "README.md" \
             --exclude ".nojekyll" \
             --exclude ".gitignore" \
@@ -44,9 +45,10 @@ jobs:
             --exclude ".git/*"
 
       # Sync all files (except excluded) to latest folder
-      - name: Sync to S3 latest folder
+      - name: Sync to R2 latest folder
         run: |
           aws s3 sync . s3://${{ secrets.AWS_S3_BUCKET }}/${{ secrets.S3_PATH_PREFIX }}/latest/ \
+            --endpoint-url ${{ secrets.R2_ENDPOINT_URL }} \
             --exclude "README.md" \
             --exclude ".nojekyll" \
             --exclude ".gitignore" \
