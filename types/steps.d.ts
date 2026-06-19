@@ -12,4 +12,6 @@ export interface StepsObject {
   count?: number | string;
   responseTime?: number | string;
   requestTime?: number | string;
+  scrollDelta?: number;
+  scrollY?: number;
 }

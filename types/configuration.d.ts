@@ -12,6 +12,7 @@ export interface BetterBugsStylesConfig {
 
 export interface BetterBugsConfiguration {
   styles?: BetterBugsStylesConfig;
+  email?: string;
   brandLogoUrl?: string;
   brandUrl?: string;
   mainHeaderText?: string;

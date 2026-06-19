@@ -5,8 +5,13 @@ export interface LoginDataResponse {
   session?: SessionObject;
 }
 
+export interface LoginSuccessResponseLimits {
+  maxScreenRecordingDurationSeconds?: number;
+}
+
 export interface LoginSuccessResponse {
-  accessToken: string;
-  expireAt: string;
   id: string;
+  projectId: string;
+  subscriptionPlanId?: string;
+  limits?: LoginSuccessResponseLimits;
 }
