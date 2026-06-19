@@ -3,6 +3,7 @@ name: Sync to R2
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 jobs:
   sync-to-r2:
