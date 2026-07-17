@@ -16,6 +16,11 @@ declare module '@betterbugs/web-sdk' {
     styles?: BetterBugsStylesConfig;
     email?: string;
     apiKey: string;
+    /**
+     * The project to report bugs to. Required when using a workspace-wide API
+     * key; omit it if you are using a legacy project-scoped key.
+     */
+    projectId?: string;
     mainHeading?: string;
     emailFieldLabel?: string;
     emailFieldPlaceholder?: string;
