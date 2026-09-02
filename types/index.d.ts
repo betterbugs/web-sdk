@@ -30,6 +30,21 @@ declare module '@betterbugs/web-sdk' {
     descriptionFieldPlaceholder?: string;
     metaData?: Record<string | number, string | number | null>;
     // captureRewindOnScreenshot?: boolean;
+    /**
+     * How a screen recording is captured.
+     *
+     * - `recordVideo` — real video via `MediaRecorder`. Supported on every
+     *   desktop browser: WebM on Chrome, Edge, Opera, Brave and Firefox, MP4 on
+     *   Safari. **Not** available on mobile, where no browser implements
+     *   `getDisplayMedia`.
+     * - `domRecord` — rrweb DOM replay. Works everywhere, including mobile.
+     *
+     * Set explicitly and the SDK honours it as given, warning in the console if
+     * the browser can't support it. Leave it unset and the SDK picks the best
+     * mode the current browser can actually deliver.
+     *
+     * @default `recordVideo` where supported, otherwise `domRecord`
+     */
     recordType?: 'recordVideo' | 'domRecord';
     // bugSuccessComponent?: React.ReactNode | string;
     successMessageHeaderText?: string;
@@ -50,6 +65,36 @@ declare module '@betterbugs/web-sdk' {
     actionButtonComponent?: React.ReactNode | string;
     disableScreenshot?: boolean;
     disableRecording?: boolean;
+    /**
+     * Require the reporter to attach media before the bug can be submitted.
+     * A screenshot **or** a screen recording satisfies it; file attachments do
+     * not. When nothing is captured, submitting shows an inline error next to
+     * the evidence buttons instead of sending the report.
+     *
+     * Has no effect if both `disableScreenshot` and `disableRecording` are
+     * `true` — there would be no way to satisfy it, so the SDK warns and
+     * leaves media optional.
+     *
+     * @default false
+     */
+    mediaRequired?: boolean;
+    /**
+     * Capture screenshots from the browser's own rendered pixels
+     * (`getDisplayMedia`) rather than by re-rendering the DOM. Far more
+     * accurate — cross-origin iframes, video, WebGL and modern CSS all come
+     * out correct — at the cost of one permission prompt per capture.
+     *
+     * Available on all desktop browsers. Chromium shares this tab directly;
+     * Safari and Firefox have no tab surface to offer, so the user shares a
+     * screen or window and the SDK crops the viewport out of it — which means
+     * an extra click in the picker, and an automatic fall back to DOM
+     * rendering if the viewport cannot be located reliably. Mobile has no
+     * screen capture at all and always uses DOM rendering.
+     *
+     * Set to `false` to always use DOM rendering and never prompt.
+     * @default true
+     */
+    preferNativeCapture?: boolean;
   }
 
   export interface BugReportData {

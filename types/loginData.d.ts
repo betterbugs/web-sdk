@@ -12,6 +12,9 @@ export interface LoginSuccessResponseLimits {
 export interface LoginSuccessResponse {
   id: string;
   projectId: string;
+  // Returned by /sdk/auth/verify-api-key alongside the key's project. Optional
+  // so older API deployments that omit it stay type-safe.
+  workspaceId?: string;
   subscriptionPlanId?: string;
   limits?: LoginSuccessResponseLimits;
 }
