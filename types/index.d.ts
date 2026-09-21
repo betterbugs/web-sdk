@@ -24,10 +24,35 @@ declare module '@betterbugs/web-sdk' {
     mainHeading?: string;
     emailFieldLabel?: string;
     emailFieldPlaceholder?: string;
+    /**
+     * Locks the report form's **Email** field so the reporter can read the
+     * prefilled address but cannot change it. The field is also taken out of
+     * the tab order and will not take focus from a click.
+     *
+     * Honoured only while the prefilled address (the `email` option above, or
+     * `setEmail()`) is a **valid** one, and only in `production` mode —
+     * `development` mode has no Email field. If the address is missing or
+     * malformed the field stays editable, so the reporter can still supply the
+     * valid address the form requires.
+     *
+     * @default false
+     */
+    emailFieldReadOnly?: boolean;
     titleFieldLabel?: string;
     titleFieldPlaceholder?: string;
     descriptionFieldLabel?: string;
     descriptionFieldPlaceholder?: string;
+    /**
+     * Options shown in the report form's **Issue Type** dropdown.
+     *
+     * A list given here **replaces** the built-in options
+     * (`General Enquiry`, `Give Feedback`, `Report a Bug`) rather than adding
+     * to them. Entries are trimmed and de-duplicated; if none are usable the
+     * SDK warns and keeps the built-in options.
+     *
+     * @default ['General Enquiry', 'Give Feedback', 'Report a Bug']
+     */
+    issueTypes?: string[];
     metaData?: Record<string | number, string | number | null>;
     // captureRewindOnScreenshot?: boolean;
     /**
